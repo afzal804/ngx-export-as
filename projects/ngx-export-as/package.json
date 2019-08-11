@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wnabil/ngx-export-as.git"
+    "url": "git+https://github.com/afzal804/ngx-export-as.git"
   },
   "keywords": [
     "angular",
@@ -31,5 +31,5 @@
   "bugs": {
     "url": "https://github.com/wnabil/ngx-export-as/issues"
   },
-  "homepage": "https://github.com/wnabil/ngx-export-as#readme"
+  "homepage": "https://github.com/afzal804/ngx-export-as#readme"
 }
