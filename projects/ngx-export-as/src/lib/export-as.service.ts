@@ -5,7 +5,6 @@ import { ExportAsConfig } from './export-as-config.model';
 
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
-import * as htmlDocx from 'html-docx-js/dist/html-docx';
 import html2pdf from 'html2pdf.js';
 
 window['html2canvas'] = html2canvas;
@@ -217,31 +216,6 @@ export class ExportAsService {
 
   private getXLSX(config: ExportAsConfig): Observable<string | null> {
     return this.getXLS(config);
-  }
-
-  private getDOCX(config: ExportAsConfig): Observable<string | null> {
-    return Observable.create((observer) => {
-      const contentDocument: string = document.getElementById(config.elementId).outerHTML;
-      const content = '<!DOCTYPE html>' + contentDocument;
-      const converted = htmlDocx.asBlob(content, config.options);
-      if (config.download) {
-        this.downloadFromBlob(converted, config.fileName);
-        observer.next();
-        observer.complete();
-      } else {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          const base64data = reader.result;
-          observer.next(base64data);
-          observer.complete();
-        };
-        reader.readAsDataURL(converted);
-      }
-    });
-  }
-
-  private getDOC(config: ExportAsConfig): Observable<string | null> {
-    return this.getDOCX(config);
   }
 
   private getJSON(config: ExportAsConfig): Observable<any[] | null> {
